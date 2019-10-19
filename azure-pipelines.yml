@@ -25,15 +25,15 @@ stages:
   displayName: Build stage
   jobs:
   - job: MavenPackageAndPublishArtifacts
-    displayName: Maven Package and Publish Artifacts
+    displayName: Maven Build and Publish Artifacts
     pool:
       vmImage: $(vmImageName)
     
     steps:
     - task: Maven@3
-      displayName: 'Maven Package'
+      displayName: 'Maven Build'
       inputs:
-        goals: clean compile assembly:single
+        goals: compile
         mavenPomFile: 'pom.xml'
 
     - task: CopyFiles@2
