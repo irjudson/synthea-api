@@ -12,7 +12,7 @@
     <repository>
       <id>in-project</id>
       <name>In Project Repo</name>
-      <url>file://${project.basedir}/libs</url>
+      <url>file://${project.build.directory}/libs</url>
     </repository>
   </repositories>
 
@@ -74,7 +74,7 @@
               <url>https://synthetichealth.github.io/synthea/build/libs/synthea-with-dependencies.jar</url>
               <outputFileName>synthea-with-dependencies.jar</outputFileName>
               <!-- default target location, just to demonstrate the parameter -->
-              <outputDirectory>${project.basedir}/libs/org/mitre/synthea/2.4</outputDirectory>
+              <outputDirectory>${project.build.directory}/libs/org/mitre/synthea/2.4</outputDirectory>
             </configuration>
           </execution>
         </executions>
