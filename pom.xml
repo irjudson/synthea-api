@@ -3,40 +3,49 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.adghealth</groupId>
   <artifactId>SyntheaAPI</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>SyntheaAPI</name>
+  <name>SyntheaAPI Maven Webapp</name>
   <url>http://maven.apache.org</url>
-
-  <!-- <repositories>
-    <repository>
-      <id>in-project</id>
-      <name>Local Repo</name>
-      <url>file://${project.build.directory}/libs</url>
-    </repository>
-  </repositories> -->
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
+      <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.sparkjava</groupId>
       <artifactId>spark-core</artifactId>
-      <version>${sparkjava.spark-core.version}</version>
+      <version>2.7.2</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-server</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-webapp</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.jetty.websocket</groupId>
+          <artifactId>websocket-server</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.jetty.websocket</groupId>
+          <artifactId>websocket-servlet</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>${google.code.gson.version}</version>
+      <version>2.8.0</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk14</artifactId>
-      <version>${slf4j.version}</version>
+      <version>1.7.25</version>
     </dependency>
     <dependency>
       <groupId>org.mitre</groupId>
@@ -47,19 +56,12 @@
     </dependency>
   </dependencies>
   <build>
+    <finalName>SyntheaAPI</finalName>
     <plugins>
       <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>${fully.qualified.main}</mainClass>
-            </manifest>
-          </archive>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-        </configuration>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.4.21.v20190926</version>
       </plugin>
       <plugin>
         <groupId>com.googlecode.maven-download-plugin</groupId>
@@ -83,14 +85,9 @@
       </plugin>
     </plugins>
   </build>
-
   <properties>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
-    <sparkjava.spark-core.version>2.7.2</sparkjava.spark-core.version>
-    <google.code.gson.version>2.8.0</google.code.gson.version>
-    <junit.version>3.8.1</junit.version>
-    <slf4j.version>1.7.25</slf4j.version>
     <fully.qualified.main>org.adghealth.SyntheaAPI</fully.qualified.main>
   </properties>
 </project>
