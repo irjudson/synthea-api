@@ -36,12 +36,17 @@ public class SyntheaAPI {
             response.type("application/json");
             Gson gson = new Gson();
             SyntheaArguments syntheaArgs = gson.fromJson(request.body(), SyntheaArguments.class);
+            // Set properties from arguments
             Set<String> keys = syntheaArgs.config.stringPropertyNames();
             for(String key : keys) {
                 Config.set(key, syntheaArgs.config.getProperty(key));
             }
             Generator generator = new Generator(syntheaArgs.options);
             generator.run();
+            // Clear properties from arguments
+            for(String key : keys) {
+                Config.remove(key);
+            }
             return gson.toJson(new StandardResponse(StatusResponse.SUCCESS));
         });
 
