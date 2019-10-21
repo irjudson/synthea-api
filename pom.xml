@@ -68,7 +68,7 @@
         <executions>
           <execution>
             <!-- the wget goal actually binds itself to this phase by default -->
-            <phase>initialize</phase>
+            <phase>validate</phase>
             <goals>
               <goal>wget</goal>
             </goals>

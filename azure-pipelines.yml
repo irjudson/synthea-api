@@ -31,9 +31,15 @@ stages:
     
     steps:
     - task: Maven@3
+      displayName: 'Maven Prep'
+      inputs:
+        goals: 'clean validate'
+        mavenPomFile: 'pom.xml'
+
+    - task: Maven@4
       displayName: 'Maven Build'
       inputs:
-        goals: 'clean compile assembly:single'
+        goals: 'compile assembly:single'
         mavenPomFile: 'pom.xml'
 
     - task: CopyFiles@2
