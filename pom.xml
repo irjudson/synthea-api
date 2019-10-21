@@ -66,7 +66,7 @@
         <executions>
           <execution>
             <!-- the wget goal actually binds itself to this phase by default -->
-            <phase>process-sources</phase>
+            <phase>initialize</phase>
             <goals>
               <goal>wget</goal>
             </goals>
