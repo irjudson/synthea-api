@@ -8,13 +8,13 @@
   <name>SyntheaAPI</name>
   <url>http://maven.apache.org</url>
 
-  <repositories>
+  <!-- <repositories>
     <repository>
       <id>in-project</id>
-      <name>In Project Repo</name>
+      <name>Local Repo</name>
       <url>file://${project.build.directory}/libs</url>
     </repository>
-  </repositories>
+  </repositories> -->
 
   <dependencies>
     <dependency>
@@ -41,6 +41,8 @@
     <dependency>
       <groupId>org.mitre</groupId>
       <artifactId>synthea</artifactId>
+      <scope>system</scope>
+      <systemPath>${project.build.directory}/libs/org/mitre/synthea/2.4/synthea-with-dependencies.jar</systemPath>
       <version>2.4</version>
     </dependency>
   </dependencies>
