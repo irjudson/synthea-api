@@ -1,5 +1,8 @@
 package org.adghealth;
 
+import java.util.Properties;
+import java.util.Set;
+
 import static spark.Spark.delete;
 import static spark.Spark.get;
 import static spark.Spark.options;
@@ -8,7 +11,9 @@ import static spark.Spark.put;
 
 import com.google.gson.Gson;
 
+import org.apache.xpath.Arg;
 import org.mitre.synthea.engine.Generator;
+import org.mitre.synthea.export.Exporter;
 import org.mitre.synthea.helpers.Config;
 
 public class SyntheaAPI {
@@ -29,10 +34,15 @@ public class SyntheaAPI {
 
         post("/data", (request, response) -> {
             response.type("application/json");
-            Generator.GeneratorOptions options = new Gson().fromJson(request.body(), Generator.GeneratorOptions.class);
-            Generator generator = new Generator(options);
+            Gson gson = new Gson();
+            SyntheaArguments syntheaArgs = gson.fromJson(request.body(), SyntheaArguments.class);
+            Set<String> keys = syntheaArgs.config.stringPropertyNames();
+            for(String key : keys) {
+                Config.set(key, syntheaArgs.config.getProperty(key));
+            }
+            Generator generator = new Generator(syntheaArgs.options);
             generator.run();
-            return new Gson().toJson(new StandardResponse(StatusResponse.SUCCESS));
+            return gson.toJson(new StandardResponse(StatusResponse.SUCCESS));
         });
 
         // post("/users", (request, response) -> {
