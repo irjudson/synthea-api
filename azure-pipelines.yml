@@ -33,7 +33,7 @@ stages:
     - task: Maven@3
       displayName: 'Maven Prep'
       inputs:
-        goals: 'clean validate'
+        goals: 'clean initialize validate'
         mavenPomFile: 'pom.xml'
 
     - task: Maven@3
