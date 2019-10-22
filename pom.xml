@@ -8,6 +8,13 @@
   <name>SyntheaAPI Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+
+    <dependency>
+      <groupId>maven</groupId>
+      <artifactId>maven-war-plugin</artifactId>
+      <version>20030413.023708</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -49,20 +56,35 @@
     </dependency>
     <dependency>
       <groupId>org.mitre</groupId>
-      <artifactId>synthea</artifactId>
-      <scope>system</scope>
-      <systemPath>${project.build.directory}/libs/org/mitre/synthea/2.4/synthea-with-dependencies.jar</systemPath>
+      <artifactId>synthea-with-dependencies</artifactId>
       <version>2.4</version>
     </dependency>
   </dependencies>
   <build>
     <finalName>SyntheaAPI</finalName>
     <plugins>
+
       <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.4.21.v20190926</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5</version>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>org.mitre</groupId>
+              <artifactId>synthea-with-dependencies</artifactId>
+              <version>2.4</version>
+              <packaging>jar</packaging>
+              <file>${project.basedir}/libs/synthea-with-dependencies.jar</file>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
+
       <plugin>
         <groupId>com.googlecode.maven-download-plugin</groupId>
         <artifactId>download-maven-plugin</artifactId>
@@ -78,7 +100,7 @@
               <url>https://synthetichealth.github.io/synthea/build/libs/synthea-with-dependencies.jar</url>
               <outputFileName>synthea-with-dependencies.jar</outputFileName>
               <!-- default target location, just to demonstrate the parameter -->
-              <outputDirectory>${project.build.directory}/libs/org/mitre/synthea/2.4</outputDirectory>
+              <outputDirectory>${project.basedir}/libs</outputDirectory>
             </configuration>
           </execution>
         </executions>
