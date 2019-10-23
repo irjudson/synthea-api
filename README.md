@@ -14,4 +14,4 @@ then, to build, run:
 
 to run the service locally, run:
 
-```mvn cargo:run```
+```mvn spring-boot:run```
