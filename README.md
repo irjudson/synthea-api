@@ -10,8 +10,8 @@ to build, ensure you have:
 
 then, to build, run:
 
-```mvn clean compile assembly:single```
+```mvn package```
 
 to run the service locally, run:
 
-```java -jar target/SyntheaAPI-1.0-SNAPSHOT-jar-with-dependencies.jar org.adghealth.SyntheaAPI```
+```mvn cargo:run```
