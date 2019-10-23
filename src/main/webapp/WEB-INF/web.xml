@@ -3,19 +3,5 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-
-  <filter>
-		<filter-name>APIFilter</filter-name>
-		<filter-class>spark.servlet.SparkFilter</filter-class>
-		<init-param>
-			<param-name>applicationClass</param-name>
-			<param-value>org.adghealth.SyntheaAPI</param-value>
-		</init-param>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>APIFilter</filter-name>
-		<url-pattern>/api/*</url-pattern>
-	</filter-mapping>
+  <display-name>Synthea API Service</display-name>
 </web-app>
