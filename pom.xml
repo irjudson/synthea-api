@@ -7,41 +7,24 @@
   <version>1.0-SNAPSHOT</version>
   <name>SyntheaAPI Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.9.RELEASE</version>
+  </parent>
   <dependencies>
 
     <dependency>
-      <groupId>maven</groupId>
-      <artifactId>maven-war-plugin</artifactId>
-      <version>20030413.023708</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.sparkjava</groupId>
-      <artifactId>spark-core</artifactId>
-      <version>2.7.2</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-api</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.8.0</version>
     </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <version>1.7.25</version>
-    </dependency>
+
     <dependency>
       <groupId>org.mitre</groupId>
       <artifactId>synthea-with-dependencies</artifactId>
@@ -51,6 +34,10 @@
   <build>
     <finalName>SyntheaAPI</finalName>
     <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -79,7 +66,6 @@
         <version>1.3.0</version>
         <executions>
           <execution>
-            <!-- the wget goal actually binds itself to this phase by default -->
             <phase>validate</phase>
             <goals>
               <goal>wget</goal>
@@ -87,89 +73,15 @@
             <configuration>
               <url>https://synthetichealth.github.io/synthea/build/libs/synthea-with-dependencies.jar</url>
               <outputFileName>synthea-with-dependencies.jar</outputFileName>
-              <!-- default target location, just to demonstrate the parameter -->
               <outputDirectory>${project.basedir}/libs</outputDirectory>
             </configuration>
           </execution>
         </executions>
       </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven2-plugin</artifactId>
-        <configuration>
-          <container>
-            <containerId>tomcat8x</containerId>
-            <artifactInstaller>
-              <groupId>org.apache.tomcat</groupId>
-              <artifactId>tomcat</artifactId>
-              <version>8.5.12</version>
-            </artifactInstaller>
-          </container>
-          <configuration>
-            <type>standalone</type>
-            <home>
-                ${project.build.directory}/apache-tomcat-${tomcat.version}
-            </home>
-            <properties>
-              <cargo.servlet.port>8080</cargo.servlet.port>
-              <cargo.logging>high</cargo.logging>
-              <cargo.jvmargs>-XX:MaxPermSize=512m -Xms256m -Xmx3072m -XX:+DisableExplicitGC -Xverify:none -Djava.awt.headless=true</cargo.jvmargs>
-              <!-- <cargo.jvmargs>-XX:MaxPermSize=512m -Xms256m -Xmx3072m -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -XX:+DisableExplicitGC -Xverify:none -Djava.awt.headless=true</cargo.jvmargs> -->
-            </properties>
-          </configuration>
-          <deployables>
-            <deployable>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>${project.artifactId}</artifactId>
-              <type>war</type>
-              <properties>
-                <context>/</context>
-              </properties>
-            </deployable>
-          </deployables>
-        </configuration>
-      </plugin>
-
-      <!--*************************************************-->
-      <!-- Deploy to Tomcat in App Service Windows         -->
-      <!--*************************************************-->
-      <plugin>
-        <groupId>com.microsoft.azure</groupId>
-        <artifactId>azure-webapp-maven-plugin</artifactId>
-        <version>1.7.0</version>
-        <configuration>
-          <!-- Specify v2 schema -->
-          <schemaVersion>v2</schemaVersion>
-          <!-- App information -->
-          <subscriptionId>1a95a20a-2ddf-4a7c-890a-8c455d843ee1</subscriptionId>
-          <resourceGroup>ADGHealth</resourceGroup>
-          <appName>adghealth-synthea</appName>
-          <pricingTier>F1</pricingTier>
-          <region>West US 2</region>
-          <stopAppDuringDeployment>True</stopAppDuringDeployment>
-          <!-- Java Runtime Stack for App Service on Windows-->
-          <runtime>
-            <os>windows</os>
-            <javaVersion>1.8</javaVersion>
-            <webContainer>tomcat 8.5</webContainer>
-          </runtime>
-          <deployment>
-            <resources>
-              <resource>
-                <directory>${project.basedir}/target</directory>
-                <targetPath>/</targetPath>
-                <includes>
-                  <include>*.war</include>
-                </includes>
-              </resource>
-            </resources>
-          </deployment>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
   <properties>
+    <java.version>1.8</java.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
     <fully.qualified.main>org.adghealth.SyntheaAPI</fully.qualified.main>
