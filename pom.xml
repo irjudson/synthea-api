@@ -79,6 +79,48 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-webapp-maven-plugin</artifactId>
+        <version>1.7.0</version>
+        <configuration>
+          <runtime>
+            <os>Linux</os>
+            <javaVersion>1.8</javaVersion>
+            <webContainer>tomcat 8.5</webContainer>
+          </runtime>
+          <deployment>
+            <resources>
+              <resource>
+                <directory>${project.basedir}/target</directory>
+                <targetPath>webapps</targetPath>
+                <includes>
+                  <include>*.war</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+          <authentication>
+            <serverId>azure-auth</serverId>
+          </authentication>
+          <resourceGroup>ADGHealth</resourceGroup>
+          <appName>adghealth-synthea</appName>
+          <region>West US 2</region>
+          <pricingTier>B1</pricingTier>
+          <appSettings>
+            <property>
+              <name>PORT</name>
+              <value>80</value>
+            </property>            
+            <!--JVM OPTIONS -->
+            <property>
+              <name>JAVA_OPTS</name>
+              <value>-Xmx512m -Xms512m</value>
+            </property>
+          </appSettings>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <properties>
