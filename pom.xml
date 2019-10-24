@@ -90,7 +90,8 @@
             <javaVersion>1.8</javaVersion>
             <webContainer>tomcat 8.5</webContainer>
           </runtime>
-          <deployment>
+          <deploymentType>war</deploymentType>
+          <!-- <deployment>
             <resources>
               <resource>
                 <directory>${project.basedir}/target</directory>
@@ -100,7 +101,7 @@
                 </includes>
               </resource>
             </resources>
-          </deployment>
+          </deployment> -->
           <authentication>
             <serverId>azure-auth</serverId>
           </authentication>

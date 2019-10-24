@@ -4,4 +4,12 @@
 
 <web-app>
   <display-name>Synthea API Service</display-name>
+  <servlet>
+    <servlet-name>SyntheaAPI</servlet-name>
+    <servlet-class>org.adghealth.MainApplication</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>SyntheaAPI</servlet-name>
+    <url-pattern>/SyntheaAPI</url-pattern>
+</servlet-mapping>
 </web-app>
