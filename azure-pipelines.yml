@@ -12,10 +12,10 @@ variables:
   azureSubscription: 'a06b6076-27fc-4110-8aef-26ba8d584ce1'
   
   # Web app name
-  webAppName: 'adghealth-synthea'
+  webAppName: 'adgsynthea'
 
   # Environment name
-  environmentName: 'adghealth-synthea'
+  environmentName: 'adgsynthea'
   
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
