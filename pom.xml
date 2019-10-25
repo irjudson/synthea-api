@@ -1,18 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  
   <groupId>org.adghealth</groupId>
   <artifactId>SyntheaAPI</artifactId>
-  <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>SyntheaAPI Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+
+  <packaging>jar</packaging>
+
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.2.0.RELEASE</version>
-    <relativePath/>
   </parent>
+
   <dependencies>
 
     <dependency>
@@ -35,6 +36,7 @@
   <build>
     <finalName>app</finalName>
     <plugins>
+
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -88,25 +90,13 @@
           <runtime>
             <os>Linux</os>
             <javaVersion>1.8</javaVersion>
-            <webContainer>tomcat 8.5</webContainer>
+            <webContainer>jre8</webContainer>
           </runtime>
-          <deploymentType>war</deploymentType>
-          <!-- <deployment>
-            <resources>
-              <resource>
-                <directory>${project.basedir}/target</directory>
-                <targetPath>webapps</targetPath>
-                <includes>
-                  <include>*.war</include>
-                </includes>
-              </resource>
-            </resources>
-          </deployment> -->
           <authentication>
             <serverId>azure-auth</serverId>
           </authentication>
           <resourceGroup>ADGHealth</resourceGroup>
-          <appName>adghealth-synthea</appName>
+          <appName>adgsynthea</appName>
           <region>West US 2</region>
           <pricingTier>B1</pricingTier>
           <appSettings>
@@ -114,10 +104,9 @@
               <name>PORT</name>
               <value>80</value>
             </property>            
-            <!--JVM OPTIONS -->
             <property>
               <name>JAVA_OPTS</name>
-              <value>-Xmx512m -Xms512m</value>
+              <value>-Xmx512m -Xms512m -Dserver.port=80</value>
             </property>
           </appSettings>
         </configuration>
@@ -129,5 +118,6 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
     <fully.qualified.main>org.adghealth.SyntheaAPI</fully.qualified.main>
+    <start-class>org.adghealth.Application</start-class>
   </properties>
 </project>
