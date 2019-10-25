@@ -20,3 +20,11 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'pam.nesbitt-ivan.judson-blueprint_development(2)(1a95a20a-2ddf-4a7c-890a-8c455d843ee1)'
+    appType: 'apiApp'
+    WebAppName: 'adgsynthea'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
