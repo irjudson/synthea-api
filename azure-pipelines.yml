@@ -9,7 +9,7 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'a06b6076-27fc-4110-8aef-26ba8d584ce1'
+  azureSubscription: '1a95a20a-2ddf-4a7c-890a-8c455d843ee1'
   
   # Web app name
   webAppName: 'adgsynthea'
