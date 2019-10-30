@@ -1,15 +1,10 @@
-# Maven package Java project Web App to Linux on Azure
-# Build your Java project and deploy it to Azure as a Linux web app
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
 - master
 
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '1a95a20a-2ddf-4a7c-890a-8c455d843ee1'
+  azureSubscription: 'pam.nesbitt-ivan.judson-blueprint_development (1a95a20a-2ddf-4a7c-890a-8c455d843ee1)-5077'
   
   # Web app name
   webAppName: 'adgsynthea'
