@@ -95,7 +95,7 @@
           <authentication>
             <serverId>azure-auth</serverId>
           </authentication>
-          <resourceGroup>ADGHealth</resourceGroup>
+          <resourceGroup>adgsynthea</resourceGroup>
           <appName>adgsynthea</appName>
           <region>West US 2</region>
           <pricingTier>B1</pricingTier>
