@@ -7,6 +7,7 @@ to build, ensure you have:
 * jdk 8
 * maven
 * an editor (of your choice)
+* this deploys via a pipeline.
 
 then, to build, run:
 
