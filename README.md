@@ -16,3 +16,21 @@ then, to build, run:
 to run the service locally, run:
 
 ```mvn spring-boot:run```
+
+There are configuration arguments you can send when you POST to the API endpoint. Here is an example:
+
+```
+{
+ "options" : {
+   population : 100
+ },
+ "config" : {
+	"exporter.hospital.fhir.export" : false,
+	"exporter.practitioner.fhir.export" : false,
+	"generate.database_type" : "none"
+ },
+ "storageArgs" : {
+	storeInFHIRService : true
+ }
+}
+```
