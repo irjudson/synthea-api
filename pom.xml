@@ -28,6 +28,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.microsoft.azure</groupId>
+      <artifactId>azure-storage</artifactId>
+      <version>8.4.0</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.mitre</groupId>
       <artifactId>synthea-with-dependencies</artifactId>
       <version>2.4</version>
