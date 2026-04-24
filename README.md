@@ -1,3 +1,5 @@
+> **Historical Project** — A service wrapper around the Synthea engine for generating synthetic FHIR patient data via REST. Preserved as a reference implementation.
+
 # synthea-api
 
 This project presents a REST API to use synthea as a service.
